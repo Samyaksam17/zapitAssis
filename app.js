@@ -1,8 +1,8 @@
-var express = require("express");
-var path = require("path");
-var bodyParser = require("body-parser");
-var expressValidator = require("express-validator");
-var session = require("express-session");
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const expressValidator = require("express-validator");
+const session = require("express-session");
 const mongoose = require("mongoose");
 const config = require("./config/db");
 const jwt = require("jsonwebtoken");
@@ -26,7 +26,7 @@ mongoose.connection.on("error", (err) => {
 });
 
 // initialize express
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,7 +68,7 @@ app.use(function (req, res, next) {
 app.use(
   expressValidator({
     errorFormatter: function (param, msg, value) {
-      var namespace = param.split("."),
+      const namespace = param.split("."),
         root = namespace.shift(),
         formParam = root;
 
@@ -88,9 +88,9 @@ app.use(
 const myCache = new NodeCache();
 
 // routes
-var index = require("./routes/index");
-var user = require("./routes/user");
-var task = require("./routes/task");
+const index = require("./routes/index");
+const user = require("./routes/user");
+const task = require("./routes/task");
 
 // entry points
 app.use("/", index);

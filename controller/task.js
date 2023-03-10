@@ -2,11 +2,11 @@ const task = require("../model/task");
 const USER = require("../model/user");
 
 const add = (req, res) => {
-  var api_key = req.body.api_key;
-  var name = req.body.name;
-  var description = req.body.description;
-  var assignee = req.body.assignee;
-  var completed = req.body.completed;
+  const api_key = req.body.api_key;
+  const name = req.body.name;
+  const description = req.body.description;
+  const assignee = req.body.assignee;
+  const completed = req.body.completed;
 
   //validation
   req.checkBody("api_key", "api key is required").notEmpty();
@@ -15,7 +15,7 @@ const add = (req, res) => {
   req.checkBody("assignee", "assignee is required").notEmpty();
   req.checkBody("completed", "completed is required").notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     return res.json({ status: false, error: errors });
@@ -25,7 +25,7 @@ const add = (req, res) => {
       if (api_res.length == 0)
         return res.json({ status: true, message: "Enter API KEY" });
       else {
-        let taskObj = {
+        const taskObj = {
           name: name,
           description: description,
           assignee: assignee,
@@ -45,17 +45,17 @@ const add = (req, res) => {
 
 // update task
 const update = (req, res) => {
-  var api_key = req.body.api_key;
-  var task_id = req.body.task_id;
-  var name = req.body.name;
-  var description = req.body.description;
-  var assignee = req.body.assignee;
-  var completed = req.body.completed;
+  const api_key = req.body.api_key;
+  const task_id = req.body.task_id;
+  const name = req.body.name;
+  const description = req.body.description;
+  const assignee = req.body.assignee;
+  const completed = req.body.completed;
 
   req.checkBody("api_key", "api key is required").notEmpty();
   req.checkBody("task_id", "task_id is required").notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     return res.json({ status: false, message: "API Key Not Found" });
@@ -94,13 +94,13 @@ const update = (req, res) => {
 // get all task
 
 const alltask = (req, res) => {
-  var api_key = req.body.api_key;
-  var query = req.body.query;
+  const api_key = req.body.api_key;
+  const query = req.body.query;
 
   req.checkBody("api_key", "api key is required").notEmpty();
   req.checkBody("query", "query is required").notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     return res.json({ status: false, error: errors });
@@ -123,14 +123,14 @@ const alltask = (req, res) => {
 
 // get task by id
 const taskById = (req, res) => {
-  var api_key = req.body.api_key;
-  var task_id = req.body.task_id;
+  const api_key = req.body.api_key;
+  const task_id = req.body.task_id;
 
   // validation
   req.checkBody("api_key", "api key is required").notEmpty();
   req.checkBody("task_id", "task_id is required").notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     return res.json({ status: false, error: errors });
@@ -150,14 +150,14 @@ const taskById = (req, res) => {
 };
 
 const remove = (req, res) => {
-  var api_key = req.body.api_key;
-  var task_id = req.body.task_id;
+  const api_key = req.body.api_key;
+  const task_id = req.body.task_id;
 
   //validation
   req.checkBody("api_key", "api key is required").notEmpty();
   req.checkBody("task_id", "task_id is required").notEmpty();
 
-  var errors = req.validationErrors();
+  const errors = req.validationErrors();
 
   if (errors) {
     return res.json({ status: false, error: errors });

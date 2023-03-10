@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 
 
 function generatePassword(length) {
-	var result = '';
-	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	var charactersLength = characters.length;
+	const result = '';
+	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	const charactersLength = characters.length;
 	for ( var i = 0; i < length; i++ ) {
 	   result += characters.charAt(Math.floor(Math.random() * charactersLength));
 	}
@@ -17,9 +17,9 @@ function generatePassword(length) {
 const genAPIKEY = generatePassword(20);
 
 const add = (req, res) => {
-  let name = req.body.name;
-  let email = req.body.email;
-  let password = req.body.password;
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
 
   //validation
   req.checkBody("name", "name is required").notEmpty();
@@ -31,7 +31,7 @@ const add = (req, res) => {
   if (errors) {
     return res.json({ status: false, error: errors });
   } else {
-    let userObj = {
+    const userObj = {
       name: name,
       email: email,
       password: password,
@@ -48,8 +48,8 @@ const add = (req, res) => {
 };
 
 const login = (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
+  const email = req.body.email;
+  const password = req.body.password;
 
   User.getSingleUser({ email: email }, function (err, user) {
     if (err) return res.json({ status: false, error: err });
@@ -83,7 +83,7 @@ const login = (req, res) => {
 };
 
 const remove = (req, res) => {
-  let user_id = req.body.user_id;
+  const user_id = req.body.user_id;
 
   User.removeUser({ _id: user_id }, function (err, user) {
     if (err) return res.json({ status: false, error: err });
@@ -100,9 +100,9 @@ const remove = (req, res) => {
 };
 
 const update = (req, res) => {
-  let user_id = req.body.user_id;
-  let name = req.body.name;
-  let email = req.body.email;
+  const user_id = req.body.user_id;
+  const name = req.body.name;
+  const email = req.body.email;
 
   User.updateUser(
     { _id: user_id },
@@ -125,7 +125,7 @@ const update = (req, res) => {
 
 // get all user
 const getAllUser = (req, res) => {
-  let query = req.body.query;
+  const query = req.body.query;
   User.getUsers(query, (err, result) => {
     res.json({ status: true, response: result, totaluser: result.length });
   });
@@ -134,7 +134,7 @@ const getAllUser = (req, res) => {
 // get user by id
 
 const byId = (req, res) => {
-  let user_id = req.body.user_id;
+  const user_id = req.body.user_id;
   User.userById({ _id: user_id }, (err, user) => {
     if (err) return res.json({ status: false, message: "id is wrong" });
     else return res.json({ status: true, response: user });

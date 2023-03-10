@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 //task schema
 
@@ -21,7 +21,7 @@ const taskSchema = new mongoose.Schema({
 //   expire_On: {
 //     type: Date,
 //   },
-  completed: {
+  compconsted: {
     type: Boolean,
   },
   user: {
@@ -32,7 +32,7 @@ const taskSchema = new mongoose.Schema({
 });
 
 // model
-var task = mongoose.model("task", taskSchema);
+const task = mongoose.model("task", taskSchema);
 
 //Add task
 const createtask = function (newtask, callback) {
@@ -54,7 +54,7 @@ const taskbyid = function (query, callback) {
 };
 
 //removetask
-const deletetask = function (query, callback) {
+const deconstetask = function (query, callback) {
   task.remove(query, callback);
 };
 
@@ -63,5 +63,5 @@ module.exports = {
   updatetask,
   getAlltask,
   taskbyid,
-  deletetask,
+  deconstetask,
 };

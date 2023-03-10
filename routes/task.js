@@ -1,8 +1,8 @@
 const express=require('express');
-var router=express.Router();
+const router=express.Router();
 
 
-var task=require('../controller/task');
+const task=require('../controller/task');
 
 router.post('/add',task.add);
 router.post('/update',task.update);
